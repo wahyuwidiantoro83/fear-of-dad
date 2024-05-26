@@ -27,12 +27,18 @@ const HomeView = () => {
             <CarouselItem>
               <div className="flex w-full h-full">
                 <img
-                  className="w-[calc(70%)] h-full object-cover"
+                  className="hidden lg:block w-full lg:w-[calc(70%)] h-full object-cover"
                   src="https://im.uniqlo.com/global-cms/spa/res754eaaeedb4f4786bda65ac35fb3f20dfr.jpg"
                   alt=""
                   srcSet=""
                 />
-                <div className="flex w-[calc(40%)] h-full items-center">
+                <img
+                  className="w-full lg:hidden h-full object-cover"
+                  src="https://im.uniqlo.com/global-cms/spa/res079812de0580f9d3b9418b3b5e9ca8f6fr.jpg"
+                  alt=""
+                  srcSet=""
+                />
+                <div className="hidden lg:flex lg:w-[calc(40%)] h-full items-center">
                   <div className="flex flex-col gap-5 ml-6">
                     <h1 className="text-3xl font-semibold ">40th Anniversary FOD</h1>
                     <p className=" w-[80%] text-xl font-normal">
@@ -48,12 +54,18 @@ const HomeView = () => {
             <CarouselItem>
               <div className="flex w-full h-full">
                 <img
-                  className="w-[calc(70%)] h-full object-cover"
+                  className="hidden lg:block w-full lg:w-[calc(70%)] h-full object-cover"
                   src="https://im.uniqlo.com/global-cms/spa/resffa3e6b0c60899c02d0e1aa1d780f380fr.jpg"
                   alt=""
                   srcSet=""
                 />
-                <div className="flex w-[calc(40%)] h-full items-center">
+                <img
+                  className="w-full lg:hidden h-full object-cover"
+                  src="https://im.uniqlo.com/global-cms/spa/resfaa300069bc285f30eb0b426c7ae7080fr.jpg"
+                  alt=""
+                  srcSet=""
+                />
+                <div className="hidden lg:flex lg:w-[calc(40%)] h-full items-center">
                   <div className="flex flex-col gap-5 ml-6">
                     <h1 className="text-3xl font-semibold ">Mandiri Cashback</h1>
                     <p className=" w-[80%] text-xl font-normal">
@@ -70,12 +82,18 @@ const HomeView = () => {
             <CarouselItem>
               <div className="flex w-full h-full">
                 <img
-                  className="w-[calc(70%)] h-full object-cover"
+                  className="hidden lg:block w-full lg:w-[calc(70%)] h-full object-cover"
                   src="https://im.uniqlo.com/global-cms/spa/resad8c17f926fc3696d7ce7ff95f160d19fr.jpg"
                   alt=""
                   srcSet=""
                 />
-                <div className="flex w-[calc(40%)] h-full items-center">
+                <img
+                  className="w-full lg:hidden h-full object-cover"
+                  src="https://im.uniqlo.com/global-cms/spa/res5371a353960c826d167d509cf47d0429fr.jpg"
+                  alt=""
+                  srcSet=""
+                />
+                <div className="hidden lg:flex lg:w-[calc(40%)] h-full items-center">
                   <div className="flex flex-col gap-5 ml-6">
                     <h1 className="text-3xl w-[80%] font-semibold ">
                       Untuk pengguna baru Aplikasi FOD
