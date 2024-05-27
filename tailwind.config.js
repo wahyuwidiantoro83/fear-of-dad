@@ -56,7 +56,7 @@ module.exports = {
         },
       },
       height: {
-        hero: "calc(100dvh - 5rem)",
+        hero: "calc(100svh - 5rem)",
       },
       borderRadius: {
         lg: "var(--radius)",

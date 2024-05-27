@@ -13,6 +13,8 @@ import { SignOutButton } from "@clerk/clerk-react";
 import { useEffect, useState } from "react";
 import { BsPlus } from "react-icons/bs";
 import { category, product } from "../Data";
+import ProductCard from "@/components/store/ProductCard";
+import { Input } from "@/components/ui/input";
 
 const HomeView = () => {
   useEffect(() => {
@@ -113,7 +115,7 @@ const HomeView = () => {
           <CarouselNext className="right-8" />
         </Carousel>
         <div className="flex flex-col mt-8 mb-10 px-6 md:px-12 lg:px-36 justify-center items-center">
-          <h1 className=" text-4xl font-semibold my-4">POPULAR CATEGORIES</h1>
+          <h1 className=" text-4xl font-semibold my-6">POPULAR CATEGORIES</h1>
           <div className="w-full grid grid-cols-4 gap-4">
             {category.map((val, idx) => {
               return (
@@ -121,147 +123,95 @@ const HomeView = () => {
                   <AspectRatio ratio={1 / 1}>
                     <img src={val.url} alt={val.name} />
                   </AspectRatio>
-                  <p className="text-base font-light ">{val.name}</p>
+                  <p className="text-sm md:text-base text-center font-light line-clamp-2">
+                    {val.name}
+                  </p>
                 </div>
               );
             })}
           </div>
+          <Button variant="outline" className="w-full py-6 text-xl border-2 my-6">
+            SELENGKAPNYA
+          </Button>
         </div>
         <div className="flex flex-col mt-8 mb-10 px-6 md:px-12 lg:px-36 justify-center items-center">
-          <h1 className=" text-4xl font-semibold my-4">WEEKLY RECOMMENDATION</h1>
+          <AspectRatio ratio={19 / 4}>
+            <img
+              className="w-full h-full object-cover"
+              src="https://im.uniqlo.com/global-cms/spa/res461b4956e92a04cb7cb4201e0faea029fr.jpg"
+              alt=""
+            />
+          </AspectRatio>
+        </div>
+        <div className="flex flex-col mt-8 mb-10 px-6 md:px-12 lg:px-36 justify-center items-center">
+          <h1 className=" text-4xl font-semibold my-6">WEEKLY RECOMMENDATION</h1>
           <div className="flex flex-col lg:flex-row w-full gap-8">
             <div className="flex w-full lg:w-[calc(30%)]">
-              <div className="flex flex-col w-full h-fit gap-3">
-                <AspectRatio ratio={1 / 1}>
-                  <img src={product[0].images.main[0].url} alt="" srcset="" />
-                </AspectRatio>
-                <div className="w-full grid grid-cols-10 gap-2">
-                  {product[0].images.chip.map((val, idx) => {
-                    return (
-                      <AspectRatio ratio={1 / 1}>
-                        <img className="w-full h-full object-cover" src={val.url} alt="" />
-                      </AspectRatio>
-                    );
-                  })}
-                </div>
-                <div className="flex justify-between">
-                  <p className="font-bold text-sm text-gray-400">
-                    {product[0].genderName.toUpperCase()}
-                  </p>
-                </div>
-                <p className="font-bold text-base mb-4">{product[0].name}</p>
-                <div className={`flex flex-col gap-1`}>
-                  {product[0].prices?.promo ? (
-                    <>
-                      <p className={`font-extrabold text-base line-through`}>
-                        {Number(product[0].prices.base.value).toLocaleString("ID-id", {
-                          style: "currency",
-                          currency: "idr",
-                          maximumFractionDigits: 0,
-                        })}
-                      </p>
-                      <p className={`font-extrabold text-2xl text-red-600`}>
-                        {Number(product[0].prices.promo.value).toLocaleString("ID-id", {
-                          style: "currency",
-                          currency: "idr",
-                          maximumFractionDigits: 0,
-                        })}
-                      </p>
-                    </>
-                  ) : (
-                    <p className={`font-extrabold text-2xl`}>
-                      {Number(product[0].prices.base.value).toLocaleString("ID-id", {
-                        style: "currency",
-                        currency: "idr",
-                        maximumFractionDigits: 0,
-                      })}
-                    </p>
-                  )}
-                  {product[0].representative?.flags?.priceFlags[0]?.detail && (
-                    <p className="text-base font-light text-red-600">
-                      {product[0].representative?.flags?.priceFlags[0]?.detail}
-                    </p>
-                  )}
-                </div>
-                <div className="flex gap-2 items-center">
-                  <Rating value={product[0].rating.average} />
-                  <p>{`(${product[0].reviews.total})`}</p>
-                </div>
-              </div>
+              <ProductCard
+                imageUrl={product[0].images.main[0].url}
+                colors={product[0].images.chip}
+                gender={product[0].genderName}
+                productName={product[0].name}
+                price={product[0].prices?.base?.value}
+                promoPrice={product[0].prices?.promo?.value}
+                priceFlags={product[0].representative?.flags?.priceFlags[0]?.detail}
+                averageRating={product[0].rating.average}
+                totalRating={product[0].reviews.total}
+              />
             </div>
-            <div className="w-full lg:w-[calc(70%)] grid grid-cols-3 gap-6">
+            <div className="w-full lg:w-[calc(70%)] grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6">
               {product.map((val, idx) => {
                 return (
-                  <div className={`${idx === 0 ? "hidden" : "flex flex-col"}  w-full h-fit gap-3`}>
-                    <AspectRatio ratio={1 / 1}>
-                      <img src={val.images.main[0].url} alt="" srcset="" />
-                    </AspectRatio>
-                    <div className="w-full grid grid-cols-10 gap-2">
-                      {val.images.chip.map((val, idx) => {
-                        if (idx < 6) {
-                          return (
-                            <AspectRatio ratio={1 / 1}>
-                              <img className="w-full h-full object-cover" src={val.url} alt="" />
-                            </AspectRatio>
-                          );
-                        } else if (idx === 7) {
-                          return (
-                            <AspectRatio ratio={1 / 1}>
-                              <BsPlus className="w-full h-full fill-gray-400" />
-                            </AspectRatio>
-                          );
-                        }
-                      })}
-                    </div>
-                    <div className="flex justify-between">
-                      <p className="font-bold text-sm text-gray-400">
-                        {val.genderName.toUpperCase()}
-                      </p>
-                    </div>
-                    <p className="font-bold text-base mb-4">{val.name}</p>
-                    <div className={`flex flex-col gap-1`}>
-                      {val.prices?.promo ? (
-                        <>
-                          <p className={`font-extrabold text-base line-through`}>
-                            {Number(val.prices.base.value).toLocaleString("ID-id", {
-                              style: "currency",
-                              currency: "idr",
-                              maximumFractionDigits: 0,
-                            })}
-                          </p>
-                          <p className={`font-extrabold text-2xl text-red-600`}>
-                            {Number(val.prices.promo.value).toLocaleString("ID-id", {
-                              style: "currency",
-                              currency: "idr",
-                              maximumFractionDigits: 0,
-                            })}
-                          </p>
-                        </>
-                      ) : (
-                        <p className={`font-extrabold text-2xl`}>
-                          {Number(val.prices.base.value).toLocaleString("ID-id", {
-                            style: "currency",
-                            currency: "idr",
-                            maximumFractionDigits: 0,
-                          })}
-                        </p>
-                      )}
-                      {val.representative?.flags?.priceFlags[0]?.detail && (
-                        <p className="text-base font-light text-red-600">
-                          {val.representative?.flags?.priceFlags[0]?.detail}
-                        </p>
-                      )}
-                    </div>
-                    <div className="flex gap-2 items-center">
-                      <Rating value={val.rating.average} />
-                      <p>{`(${val.reviews.total})`}</p>
-                    </div>
-                  </div>
+                  <>
+                    <ProductCard
+                      imageUrl={val.images.main[0].url}
+                      colors={val.images.chip}
+                      gender={val.genderName}
+                      productName={val.name}
+                      price={val.prices?.base?.value}
+                      promoPrice={val.prices?.promo?.value}
+                      promoFlag={val.representative?.flags?.priceFlags[0]?.detail}
+                      averageRating={val.rating.average}
+                      totalRating={val.reviews.total}
+                    />
+                  </>
                 );
               })}
             </div>
           </div>
+          <Button variant="outline" className="w-full py-6 text-base md:text-xl border-2 my-6">
+            SELENGKAPNYA
+          </Button>
         </div>
+        <div className="flex flex-col mt-8 mb-10 px-6 md:px-12 lg:px-36 justify-center items-center">
+          <AspectRatio ratio={19 / 4}>
+            <img
+              className="w-full h-full object-cover"
+              src="https://im.uniqlo.com/global-cms/spa/res67a82eb57f97b9f4636bf16a65a00c16fr.jpg"
+              alt=""
+            />
+          </AspectRatio>
+        </div>
+        {/* <div className="flex flex-col mt-8 mb-10 px-6 md:px-12 lg:px-36 justify-center items-center">
+          <h1 className=" text-4xl font-semibold my-6">FOD TOPICS</h1>
+        </div> */}
+        {/* <div className="flex mt-8 px-6 md:px-12 lg:px-36 justify-center items-center border-t-2">
+          <div className="flex flex-col w-[calc(40%)] gap-3">
+            <div className="flex flex-col gap-4">
+              <p>SUBSCRIBE NEWSLETTER</p>
+              <Input />
+              <Button className="w-fit">SUBSCRIBE</Button>
+            </div>
+            <hr />
+            <div className="flex gap-2">
+              <span className="w-24 h-24 bg-slate-400"></span>
+              <span className="w-24 h-24 bg-slate-400"></span>
+              <span className="w-24 h-24 bg-slate-400"></span>
+              <span className="w-24 h-24 bg-slate-400"></span>
+            </div>
+          </div>
+          <div className="flex w-[calc(60%)]"></div>
+        </div> */}
       </Layout>
     </>
   );
