@@ -14,7 +14,7 @@ const ProductCard = ({
   totalRating,
 }) => {
   return (
-    <div className="flex flex-col w-full h-fit gap-3">
+    <div className="flex flex-col w-full h-fit gap-3 cursor-pointer">
       <AspectRatio ratio={1 / 1}>
         <img src={imageUrl} alt="" srcset="" />
       </AspectRatio>
