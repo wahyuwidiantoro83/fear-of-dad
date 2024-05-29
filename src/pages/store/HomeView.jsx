@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/carousel";
 import { SignOutButton } from "@clerk/clerk-react";
 import { useEffect, useState } from "react";
-import { BsFacebook, BsInstagram, BsPlus, BsTwitter } from "react-icons/bs";
+import { BsFacebook, BsInstagram, BsPlus, BsTiktok, BsTwitter } from "react-icons/bs";
 import { category, product } from "../Data";
 import ProductCard from "@/components/store/ProductCard";
 import { Input } from "@/components/ui/input";
@@ -221,7 +221,7 @@ const HomeView = () => {
                 <BsTwitter className="w-full h-full group-hover:fill-white transition-all duration-300" />
               </span>
               <span className="w-16 h-16 p-3 border-2 group hover:bg-black border-black transition-all duration-300 cursor-pointer rounded-sm">
-                <BsInstagram className="w-full h-full group-hover:fill-white transition-all duration-300" />
+                <BsTiktok className="w-full h-full group-hover:fill-white transition-all duration-300" />
               </span>
             </div>
           </div>
