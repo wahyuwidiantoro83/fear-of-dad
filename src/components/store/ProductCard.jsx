@@ -23,7 +23,7 @@ const ProductCard = ({
           if (idx < 6) {
             return (
               <AspectRatio ratio={1 / 1}>
-                <img className="w-full h-full object-cover" src={val.url} alt="" />
+                <img className="rounded-sm w-full h-full object-cover" src={val.url} alt="" />
               </AspectRatio>
             );
           } else if (idx === 7) {

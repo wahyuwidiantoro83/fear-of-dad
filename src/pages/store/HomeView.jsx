@@ -24,7 +24,12 @@ const HomeView = () => {
   return (
     <>
       <Layout>
-        <Carousel className=" w-full h-hero">
+        <Carousel
+          opts={{
+            loop: true,
+          }}
+          className=" w-full h-hero"
+        >
           <CarouselContent>
             <CarouselItem>
               <div className="flex w-full h-full">
@@ -156,7 +161,7 @@ const HomeView = () => {
                 promoPrice={product[0].prices?.promo?.value}
                 promoFlag={product[0].representative?.flags?.priceFlags[0]?.detail}
                 averageRating={product[0].rating.average}
-                totalRating={product[0].reviews.total}
+                totalRating={product[0].rating.count}
               />
             </div>
             <div className="w-full lg:w-[calc(70%)] grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6">
@@ -172,7 +177,7 @@ const HomeView = () => {
                       promoPrice={val.prices?.promo?.value}
                       promoFlag={val.representative?.flags?.priceFlags[0]?.detail}
                       averageRating={val.rating.average}
-                      totalRating={val.reviews.total}
+                      totalRating={val.rating.count}
                     />
                   </>
                 );
