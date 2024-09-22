@@ -308,7 +308,7 @@ const ProductDetailView = () => {
               return (
                 <div key={idx} className="flex flex-col gap-3 mb-3">
                   <div className="flex justify-between items-center">
-                    <p className="text-xl w-[70%] font-semibold">{val.title.toUpperCase()}</p>
+                    <p className="text-base w-[70%] font-semibold">{val.title.toUpperCase()}</p>
                     <p className="text-sm font-normal text-gray-400">
                       {createDate.toLocaleDateString("id-ID")}
                     </p>
