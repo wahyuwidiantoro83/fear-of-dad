@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Navbar from "./store/Navbar";
+import Footer from "./store/Footer";
 
 const Layout = (props) => {
   const [openModal, setOpenModal] = useState(false);
@@ -15,6 +16,7 @@ const Layout = (props) => {
           <div className="flex w-full h-full">Halo</div>
         </div>
         {props.children}
+        <Footer />
       </div>
     </>
   );

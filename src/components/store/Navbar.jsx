@@ -1,6 +1,7 @@
 import Logo from "../../assets/logo.png";
 import { BsBagHeart, BsCart, BsPerson, BsSearch } from "react-icons/bs";
 import BurgerButton from "./BurgerButton";
+import { HeartIcon, MagnifyingGlassIcon, PersonIcon } from "@radix-ui/react-icons";
 
 const Navbar = ({ onClickBurger }) => {
   return (
@@ -23,13 +24,13 @@ const Navbar = ({ onClickBurger }) => {
       </div>
       <div className="flex justify-center items-center gap-6 md:gap-8 text-sm font-semibold">
         <span className="w-6 h-6 cursor-pointer">
-          <BsSearch className="w-full h-full" />
+          <MagnifyingGlassIcon className="w-full h-full" />
         </span>
         <span className="hidden md:block w-6 h-6 cursor-pointer">
-          <BsPerson className="w-full h-full" />
+          <PersonIcon className="w-full h-full" />
         </span>
         <span className="w-6 h-6 cursor-pointer">
-          <BsBagHeart className="w-full h-full" />
+          <HeartIcon className="w-full h-full" />
         </span>
         <span className="w-6 h-6 cursor-pointer">
           <BsCart className="w-full h-full" />

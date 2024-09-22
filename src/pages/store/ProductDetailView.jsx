@@ -21,11 +21,21 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { useEffect, useState } from "react";
-import { product } from "../Data";
+import { product, reviews } from "../Data";
 import { AspectRatio } from "@radix-ui/react-aspect-ratio";
 import Rating from "@/components/store/Rating";
 import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { BsCopy, BsFacebook, BsTwitterX } from "react-icons/bs";
+
+const test = [1, 2, 3, 4, 5, 6];
 
 const ProductDetailView = () => {
   const [api, setApi] = useState();
@@ -65,10 +75,10 @@ const ProductDetailView = () => {
             </BreadcrumbList>
           </Breadcrumb>
         </div>
-        <div className="flex mt-8 mb-10 px-6 md:px-12 lg:px-36">
-          <div className="flex w-[55%] flex-col">
-            <div className="flex gap-3">
-              <div className="grid w-[20%] h-fit grid-cols-2 gap-2">
+        <div className="flex flex-col md:flex-row mt-8 mb-10 px-6 md:px-12 lg:px-36">
+          <div className="flex md:w-[55%] flex-col gap-6">
+            <div className="flex flex-col md:flex-row gap-3">
+              <div className="hidden md:grid w-[20%] h-fit grid-cols-2 gap-2">
                 {product[0].images.sub.map((val, idx) => {
                   return (
                     <img
@@ -102,10 +112,91 @@ const ProductDetailView = () => {
                 <CarouselNext className="right-5" />
                 <CarouselPrevious className="left-5" />
               </Carousel>
+              <div className="flex md:hidden gap-2 mb-6 justify-center">
+                {product[0].images.sub.map((val, idx) => {
+                  return (
+                    <span
+                      onClick={() => api.scrollTo(idx)}
+                      key={idx}
+                      className={`rounded-full w-1.5 h-1.5 ${
+                        idx === current ? "bg-black" : "bg-gray-400"
+                      }`}
+                    ></span>
+                  );
+                })}
+              </div>
+            </div>
+            <div className="hidden md:flex flex-col gap-6 mt-6">
+              <div className="w-full">
+                <Accordion type="single" defaultValue="item-1" collapsible>
+                  <AccordionItem value="item-1">
+                    <AccordionTrigger className="text-xl font-semibold">DESKRIPSI</AccordionTrigger>
+                    <AccordionContent className="p-2">
+                      - Bahan katun rayon yang lembut. - Cardigan serbaguna yang wajib dimiliki. -
+                      Dilengkapi teknologi UV Protection. - Dapat dicuci dengan mesin. *Kami
+                      merekomendasikan untuk mencuci produk ini dengan kondisi terbalik dalam
+                      laundry net tipe mesh. *Setelah dicuci, bentangkan dalam bentuk aslinya untuk
+                      mengeringkan. - Diperbarui dengan ukuran yang lebih pendek agar cocok
+                      dipadukan dengan bawahan apa pun. - Dapat dikenakan sebagai pullover. - Desain
+                      garis yang stylish. - Cocok dipakai di ruangan ber-AC. - UPF25.
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+              </div>
+              <div className="flex justify-between">
+                <p className="text-xl font-semibold">ULASAN</p>
+                <div className="flex gap-2 items-baseline">
+                  <Rating value={product[0].rating.average} />
+                  <p>{`(${product[0].rating.count})`}</p>
+                </div>
+              </div>
+              <Separator />
+              <div className="div">
+                <p className="text-base font-semibold">{product[0].rating.count} Reviews</p>
+              </div>
+              <Separator />
+              <div className="flex flex-col gap-2">
+                {reviews.map((val, idx) => {
+                  let createDate = new Date(val.createDate * 1000);
+                  return (
+                    <div key={idx} className="flex flex-col gap-3 mb-3">
+                      <div className="flex justify-between items-center">
+                        <p className="text-xl w-[70%] font-semibold">{val.title.toUpperCase()}</p>
+                        <p className="text-sm font-normal text-gray-400">
+                          {createDate.toLocaleDateString("id-ID")}
+                        </p>
+                      </div>
+                      <Rating value={val.rate} />
+                      <p className="text-sm">Size : {val.purchasedSize}</p>
+                      <p className="text-sm">{val.comment}</p>
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm font-semibold">{val.name}</span>
+                        <span className="text-sm text-gray-400">-</span>
+                        <span className="text-sm text-gray-400">{val.gender.name}</span>
+                        <span className="text-sm text-gray-400">-</span>
+                        <span className="text-sm text-gray-400">{val.location}</span>
+                      </div>
+                      <Separator />
+                    </div>
+                  );
+                })}
+                <Button
+                  variant="outline"
+                  className="py-6 border-2 border-black rounded-none font-semibold"
+                >
+                  VIEW MORE
+                </Button>
+                <Button
+                  variant="outline"
+                  className="py-6 border-2 border-black rounded-none font-semibold"
+                >
+                  WRITE REVIEW
+                </Button>
+              </div>
             </div>
           </div>
-          <div className="flex w-[45%] flex-col pl-16 gap-6">
-            <h1 className="text-3xl font-bold">{product[0].name}</h1>
+          <div className="flex md:w-[45%] md:sticky md:top-[6rem] h-fit flex-col md:pl-16 gap-6">
+            <h1 className="text-xl md:text-3xl font-bold">{product[0].name}</h1>
             <div className="flex justify-between">
               <div className={`flex flex-col`}>
                 {product[0].prices?.promo ? (
@@ -145,7 +236,7 @@ const ProductDetailView = () => {
                 <p>{`(${product[0].rating.count})`}</p>
               </div>
             </div>
-            <div className="w-full h-0.5 rounded-sm bg-gray-400"></div>
+            <Separator className="h-0.5 bg-gray-400 md:mt-6" />
             <div className="flex flex-col gap-2">
               <p className="font-semibold text-sm">COLOR: BLUE</p>
               <div className="grid grid-cols-8 w-full gap-2">
@@ -184,7 +275,7 @@ const ProductDetailView = () => {
                   })}
                 </SelectContent>
               </Select>
-              <small className="text-xs text-gray-400">In Stock</small>
+              <small className="text-sm text-gray-400">In Stock</small>
             </div>
             <div className="flex flex-col gap-2">
               <Button className="py-6 rounded-none font-semibold">ADD TO CART</Button>
@@ -195,6 +286,59 @@ const ProductDetailView = () => {
                 ADD TO WISHLIST
               </Button>
             </div>
+            <Separator className="h-0.5 bg-gray-400" />
+            <div className="flex flex-col gap-2">
+              <p className="font-semibold text-sm">SHARE</p>
+              <div className="grid grid-cols-8 w-full gap-2">
+                <div className="w-full aspect-square border-2 p-2 border-black group hover:bg-black cursor-pointer transition-all duration-300">
+                  <BsFacebook className="w-full h-full group-hover:text-white transition-all duration-300" />
+                </div>
+                <div className="w-full aspect-square border-2 p-2 border-black group hover:bg-black cursor-pointer transition-all duration-300">
+                  <BsTwitterX className="w-full h-full group-hover:text-white transition-all duration-300" />
+                </div>
+                <div className="w-full aspect-square border-2 p-3 border-black group hover:bg-black cursor-pointer transition-all duration-300">
+                  <BsCopy className="w-full h-full group-hover:text-white transition-all duration-300" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="flex md:hidden flex-col gap-2 mt-6">
+            {reviews.map((val, idx) => {
+              let createDate = new Date(val.createDate * 1000);
+              return (
+                <div key={idx} className="flex flex-col gap-3 mb-3">
+                  <div className="flex justify-between items-center">
+                    <p className="text-xl w-[70%] font-semibold">{val.title.toUpperCase()}</p>
+                    <p className="text-sm font-normal text-gray-400">
+                      {createDate.toLocaleDateString("id-ID")}
+                    </p>
+                  </div>
+                  <Rating value={val.rate} />
+                  <p className="text-sm">Size : {val.purchasedSize}</p>
+                  <p className="text-sm">{val.comment}</p>
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm font-semibold">{val.name}</span>
+                    <span className="text-sm text-gray-400">-</span>
+                    <span className="text-sm text-gray-400">{val.gender.name}</span>
+                    <span className="text-sm text-gray-400">-</span>
+                    <span className="text-sm text-gray-400">{val.location}</span>
+                  </div>
+                  <Separator />
+                </div>
+              );
+            })}
+            <Button
+              variant="outline"
+              className="py-6 border-2 border-black rounded-none font-semibold"
+            >
+              VIEW MORE
+            </Button>
+            <Button
+              variant="outline"
+              className="py-6 border-2 border-black rounded-none font-semibold"
+            >
+              WRITE REVIEW
+            </Button>
           </div>
         </div>
       </Layout>

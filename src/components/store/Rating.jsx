@@ -1,6 +1,6 @@
 import { BsStar, BsStarFill, BsStarHalf } from "react-icons/bs";
 
-const Rating = ({ value = 4.2, starCount = 5 }) => {
+const Rating = ({ value = 0, starCount = 5 }) => {
   return (
     <div className="flex gap-1">
       {new Array(starCount).fill().map((_, idx) => {
