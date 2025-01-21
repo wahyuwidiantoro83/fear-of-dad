@@ -11,7 +11,7 @@ const LoginView = () => {
         </span>
       </div>
       <div className="flex w-full justify-center px-6 md:px-12 lg:px-36 py-6 md:py-12">
-        <div className="flex border border-gray-200 w-full divide-x gap-2 divide-gray-200">
+        <div className="flex flex-col md:flex-row border border-gray-200 w-full max-sm:divide-y md:divide-x gap-2 divide-gray-200">
           <div className="flex px-4 py-8 w-full flex-col gap-4 md:gap-6 items-start">
             <h1 className="text-4xl font-semibold">LOGIN</h1>
             <p>Login with your email address and password.</p>
@@ -48,7 +48,7 @@ const LoginView = () => {
               <span className="font-semibold underline cursor-pointer">PRIVACY POLICY</span>
             </div>
             <div className="flex items-start flex-col gap-1">
-              <Button className="w-80 text-lg font-bold rounded-sm py-6" type="submit">
+              <Button className="w-full md:w-80 text-lg font-bold rounded-sm py-6" type="submit">
                 LOGIN
               </Button>
               <span className="font-semibold underline cursor-pointer">FORGOT YOUR PASSWORD?</span>
@@ -61,7 +61,7 @@ const LoginView = () => {
               purchase history and getting discount coupons with your membership. Sign up today,
               it's free!
             </p>
-            <Button className="w-80 mt-4 text-lg font-bold rounded-sm py-6" type="submit">
+            <Button className="w-full md:w-80 mt-4 text-lg font-bold rounded-sm py-6" type="submit">
               BUAT AKUN
             </Button>
           </div>
