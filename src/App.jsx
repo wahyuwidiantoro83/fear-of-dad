@@ -10,7 +10,7 @@ function App() {
       <Route path={"/"} element={<HomeView />} />
       <Route path={"/product"} element={<ProductDetailView />} />
       <Route path={"/login"} element={<LoginView />} />
-      <Route path={"/signup"} element={<RegisterView />} />
+      <Route path={"/register"} element={<RegisterView />} />
     </Routes>
   );
 }
