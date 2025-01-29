@@ -30,7 +30,7 @@ jobs:
 
       - name: 📤 Deploy to Server
         run: |
-          rsync -avz --delete dist/ wahyuwidiantoro@103.196.152.121:/home/www/fear-of-dad/dist/
+          rsync -avz --delete --exclude=".user.ini" --no-perms --no-timestamps dist/ wahyuwidiantoro@103.196.152.121:/home/www/fear-of-dad/dist/
 
       - name: 🔄 Restart Nginx
         run: |
