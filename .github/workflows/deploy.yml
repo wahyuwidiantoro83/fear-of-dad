@@ -36,7 +36,7 @@ jobs:
       - name: 🔄 Restart Nginx
         run: |
           # Restart Nginx
-          ssh user@103.196.152.121 "sudo systemctl restart nginx"
+          ssh wahyuwidiantoro@103.196.152.121 "sudo systemctl restart nginx"
 
       - name: 📋 Verify Deployment
         run: |
