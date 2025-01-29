@@ -30,8 +30,25 @@ jobs:
 
       - name: 📤 Deploy to Server
         run: |
-          rsync -avz --delete --exclude=".user.ini" dist/ wahyuwidiantoro@103.196.152.121:/home/www/fear-of-dad/dist/
+          # Ensure remote directory exists and has correct permissions
+          ssh wahyuwidiantoro@103.196.152.121 "mkdir -p /home/www/fear-of-dad/dist && chmod 755 /home/www/fear-of-dad/dist"
+          
+          # Use rsync with additional flags to handle permissions
+          rsync -avz \
+            --delete \
+            --no-perms \
+            --no-owner \
+            --no-group \
+            --exclude=".git" \
+            --exclude=".github" \
+            dist/ wahyuwidiantoro@103.196.152.121:/home/www/fear-of-dad/dist/
 
       - name: 🔄 Restart Nginx
         run: |
+          # Restart Nginx
           ssh user@103.196.152.121 "sudo systemctl restart nginx"
+
+      - name: 📋 Verify Deployment
+        run: |
+          # Optional: Add a step to verify the deployment
+          ssh wahyuwidiantoro@103.196.152.121 "ls -la /home/www/fear-of-dad/dist"
