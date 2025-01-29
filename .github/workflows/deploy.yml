@@ -1,0 +1,37 @@
+name: Deploy Fear Of Dad
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🚀 Checkout Code
+        uses: actions/checkout@v3
+
+      - name: 🔑 Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H 103.196.152.121 >> ~/.ssh/known_hosts
+
+      - name: 📦 Build React App
+        run: |
+          npm install
+          npm run build
+
+      - name: 📤 Deploy to Server
+        run: |
+          rsync -avz --delete dist/ wahyuwidiantoro@103.196.152.121:/home/www/fear-of-dad/dist/
+
+      - name: 🔄 Restart Nginx
+        run: |
+          ssh user@103.196.152.121 "sudo systemctl restart nginx"

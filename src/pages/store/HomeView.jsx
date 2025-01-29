@@ -1,5 +1,4 @@
 import Layout from "@/components/Layout";
-import Logo from "../../assets/logo.png";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Button } from "@/components/ui/button";
 import {
@@ -9,12 +8,9 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { SignOutButton } from "@clerk/clerk-react";
 import { useEffect, useState } from "react";
-import { BsFacebook, BsInstagram, BsPlus, BsTiktok, BsTwitter } from "react-icons/bs";
 import { category, product } from "../Data";
 import ProductCard from "@/components/store/ProductCard";
-import { Input } from "@/components/ui/input";
 
 const HomeView = () => {
   useEffect(() => {

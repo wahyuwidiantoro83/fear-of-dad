@@ -101,7 +101,15 @@ const RegisterView = () => {
               </div>
             </div>
             <div className="h-0.5 bg-gray-200 w-full"></div>
-            <div className="flex flex-col items-start gap-1">
+            <span className="text-lg md:text-xl font-medium uppercase">Membership Agreement *</span>
+            <p className="text-sm md:text-base text-muted-foreground">
+              By creating an account, you agree to UNIQLO’s privacy policy and terms of use.
+            </p>
+            <div className="flex items-center gap-1">
+              <Checkbox className="rounded-none" />
+              <label htmlFor="">I agree to the UNIQLO’s TERMS OF USE and PRIVACY POLICY</label>
+            </div>
+            <div className="flex items-start gap-4 mb-2">
               <span className="font-semibold underline cursor-pointer">TERM OF USE</span>
               <span className="font-semibold underline cursor-pointer">PRIVACY POLICY</span>
             </div>
