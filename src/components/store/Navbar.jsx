@@ -2,12 +2,20 @@ import Logo from "../../assets/logo.png";
 import { BsBagHeart, BsCart, BsPerson, BsSearch } from "react-icons/bs";
 import BurgerButton from "./BurgerButton";
 import { HeartIcon, MagnifyingGlassIcon, PersonIcon } from "@radix-ui/react-icons";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = ({ onClickBurger }) => {
+  const navigate = useNavigate();
+
   return (
     <nav className="flex w-full justify-between h-20 px-6 md:px-12 lg:px-36 items-center font-halve sticky top-0 bg-white border-b-2 z-[100]">
       <div className="flex items-center gap-10">
-        <span className="w-12 h-12">
+        <span
+          className="w-12 h-12"
+          onClick={() => {
+            navigate("/");
+          }}
+        >
           <img className="w-full h-full" src={Logo} alt="" srcSet="" />
         </span>
         <div className="hidden md:flex justify-center gap-8 text-sm font-semibold">
