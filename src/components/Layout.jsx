@@ -29,6 +29,7 @@ const Layout = (props) => {
               </TabsList>
               <TabsContent value="man">Make changes to your account here.</TabsContent>
               <TabsContent value="woman">Change your password here.</TabsContent>
+              <TabsContent value="kids">Change your password here.</TabsContent>
             </Tabs>
           </div>
         </div>
